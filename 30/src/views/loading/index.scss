@@ -1,0 +1,35 @@
+#loadingView {
+  #loadingPanel {
+    .Placeholder {
+        .Icon {
+            animation: opacity 1.8s linear infinite;
+        }
+        .loadingData {
+            .description {
+              font-size: 14px;
+            }
+            .Progress {
+              margin-top: 5px;
+              width: 130px;
+            }
+            .progress {
+              font-size: 14px;
+              margin-top: 5px;
+              display: inline-block;
+            }
+          }
+    }
+  }
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 1;
+    }
+    49% {
+        opacity: 0;
+    }
+    99% {
+        opacity: 1;
+    }
+}

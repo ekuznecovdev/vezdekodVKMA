@@ -1,0 +1,51 @@
+#gameView {
+  #gamePanel {
+    .gameContent {
+      .roundInfo {
+        font-weight: 600;
+        font-size: 21px;
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+        margin-top: 40px;
+      }
+      .cardWrapper {
+        margin-top: 30px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        .card {
+          height: 150px;
+          width: 70%;
+          .description {
+            display: none;
+          }
+          &.card--show {
+            .description {
+              display: flex;
+            }
+          }
+        }
+      }
+      .actionsWrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        .actions {
+          width: 70%;
+          &:not(:first-of-type) {
+            margin-top: 10px;
+          }
+          .Button {
+            display: block !important;
+            margin: auto;
+            width: 100%;
+            &:not(:first-child) {
+              margin-top: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

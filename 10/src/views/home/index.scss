@@ -1,0 +1,21 @@
+#homeView {
+  #homePanel {
+    .header {
+      margin: 10px 15px 5px 20px;
+    }
+    .locationList {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 15px;
+      padding-bottom: 0px !important;
+      flex-wrap: wrap;
+      .LocationBlock {
+        display: inline-block;
+        width: calc(50% - 5px);
+        &:nth-child(n + 2) {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}

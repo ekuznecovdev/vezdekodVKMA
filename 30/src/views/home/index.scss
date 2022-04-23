@@ -1,0 +1,33 @@
+#homeView {
+  #homePanel {
+    .vkuiPanel__in {
+      background: url("../../lib/media/background.png") repeat;
+      background-size: 45%;
+      .createGame {
+        backdrop-filter: blur(2px);
+        .Placeholder__in {
+          padding: 32px !important;
+          background-color: #2C3E50;
+          border-radius: 4px;
+          width: 80%;
+          .gameSettings {
+            margin-top: 20px;
+            .players {
+              display: inline-block;
+              font-size: 14px;
+              margin-top: 5px;
+            }
+            .actions {
+              margin-top: 30px;
+              .Button {
+                &:not(:first-child) {
+                  margin-top: 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
