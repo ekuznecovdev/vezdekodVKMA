@@ -181,7 +181,7 @@ const updateTime = () => {
     if (db.games.length > 0) {
       for (let i in db.games) {
         const data = db.games[i];
-        if (data.gameSettings.inGame && data.gameSettings.time >= 0) {
+        if (data.gameSettings.inGame && data.gameSettings.time > 0) {
           data.gameSettings.time -= 1;
           savedb(db);
         }
