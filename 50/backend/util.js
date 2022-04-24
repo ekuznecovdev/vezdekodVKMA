@@ -6,11 +6,6 @@ const {
 const path = require("path");
 
 const checkVkSign = ({ vkSign, vkId, timestamp }) => {
-  const now = Date.now();
-  if (Number(timestamp + 60000) < now) {
-    return false;
-  }
-
   let sign;
   const queryParams = [];
 
