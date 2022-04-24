@@ -1,1 +1,1 @@
-Url of vk mini app => vk.com/app8147048
+Url of vk mini app => https://vk.com/app8147048
