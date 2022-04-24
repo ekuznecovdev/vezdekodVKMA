@@ -19,5 +19,9 @@ export const getArrayToNum = (max, min = 1) => {
 export const toHumanTime = (s) => {
   const min = Math.trunc(s / 60);
   const sec = Math.trunc(s - min * 60);
-  return min + " мин. " + sec + " сек.";
+  if(min > 0){
+    return min + " мин. " + sec + " сек.";
+  } else {
+    return sec + " сек.";
+  }
 };
