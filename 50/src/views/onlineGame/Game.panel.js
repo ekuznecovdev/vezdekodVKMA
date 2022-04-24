@@ -135,42 +135,47 @@ export const GamePanel = ({ id, setActiveView }) => {
 
   useEffect(() => {
     const i = setInterval(async () => {
-      const res = await axios
-        .post("https://82.148.17.229:3000/api.php", {
-          authData: {
-            vkSign: window.location.search,
-            vkId: vkData.id,
-            timestamp: Date.now(),
-          },
-          method: "gameInfo",
-          payload: {
-            hash: gameData.gameHash,
-          },
-        })
-        .catch((e) => {
-          return {
-            status: false,
-            deadConnection: true,
-            errorText: "Сервер временно недоступен",
-          };
-        });
-      if (!res.data) {
-        // here error, server offline
-      }
-      if (res.data.status) {
-        // game created
-        dispatch({
-          type: "game/setOnlineSettings",
-          payload: res.data.gameData,
-        });
-        setActiveView("onlineGameView");
+      console.log(gameData.gameSettings.time);
+      if (gameData.gameSettings.time <= 0) {
+        return;
       } else {
-        setActiveView("homeView");
-        // here error
+        const res = await axios
+          .post("https://82.148.17.229:3000/api.php", {
+            authData: {
+              vkSign: window.location.search,
+              vkId: vkData.id,
+              timestamp: Date.now(),
+            },
+            method: "gameInfo",
+            payload: {
+              hash: gameData.gameHash,
+            },
+          })
+          .catch((e) => {
+            return {
+              status: false,
+              deadConnection: true,
+              errorText: "Сервер временно недоступен",
+            };
+          });
+        if (!res.data) {
+          // here error, server offline
+        }
+        if (res.data.status) {
+          // game created
+          dispatch({
+            type: "game/setOnlineSettings",
+            payload: res.data.gameData,
+          });
+          setActiveView("onlineGameView");
+        } else {
+          setActiveView("homeView");
+          // here error
+        }
       }
     }, 1000);
     return () => clearInterval(i);
-  }, []);
+  }, [gameData]);
 
   console.log(gameData);
   return (
@@ -220,6 +225,22 @@ export const GamePanel = ({ id, setActiveView }) => {
                     {gameData.gameSettings.playerCount}
                   </div>
                 ) : null}
+                <Button
+                  size="m"
+                  mode="destructive"
+                  before={<Icon20DoorArrowRightOutline />}
+                  onClick={gameExit}
+                >
+                  Покинуть комнату
+                </Button>
+              </div>
+            </div>
+          ) : null}
+
+          {gameData.gameOwner != vkData.id &&
+          gameData.gameSettings.time <= 0 ? (
+            <div className="actionsWrapper">
+              <div className="actions">
                 {gameData.gameSettings.time == 0 ? (
                   <>
                     {!showSpies ? (
@@ -234,8 +255,20 @@ export const GamePanel = ({ id, setActiveView }) => {
                     ) : (
                       <div className="spiesList">
                         {gameData.gameSettings.spyPlayerId.length == 1
-                          ? `Шпионом был игрок #${gameData.gameSettings.spyPlayerId[0]}`
-                          : `Шпионами были игрок #${gameData.gameSettings.spyPlayerId[0]} и игрок #${gameData.gameSettings.spyPlayerId[1]}`}
+                          ? `Шпионом был игрок @id${
+                              gameData.playersId[
+                                gameData.gameSettings.spyPlayerId[0] - 1
+                              ]
+                            }`
+                          : `Шпионами были игрок @id${
+                              gameData.playersId[
+                                gameData.gameSettings.spyPlayerId[0] - 1
+                              ]
+                            } и игрок @id${
+                              gameData.playersId[
+                                gameData.gameSettings.spyPlayerId[1] - 1
+                              ]
+                            }`}
                       </div>
                     )}
                   </>
@@ -275,8 +308,20 @@ export const GamePanel = ({ id, setActiveView }) => {
                     ) : (
                       <div className="spiesList">
                         {gameData.gameSettings.spyPlayerId.length == 1
-                          ? `Шпионом был игрок #${gameData.gameSettings.spyPlayerId[0]}`
-                          : `Шпионами были игрок #${gameData.gameSettings.spyPlayerId[0]} и игрок #${gameData.gameSettings.spyPlayerId[1]}`}
+                          ? `Шпионом был игрок @id${
+                              gameData.playersId[
+                                gameData.gameSettings.spyPlayerId[0] - 1
+                              ]
+                            }`
+                          : `Шпионами были игрок @id${
+                              gameData.playersId[
+                                gameData.gameSettings.spyPlayerId[0] - 1
+                              ]
+                            } и игрок @id${
+                              gameData.playersId[
+                                gameData.gameSettings.spyPlayerId[1] - 1
+                              ]
+                            }`}
                       </div>
                     )}
                   </>

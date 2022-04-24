@@ -150,7 +150,7 @@ server.post("/api.php", (req, res) => {
         });
       }
       if (room && room.playersId.includes(data.authData.vkId)) {
-        if (room.gameSettings.inGame) {
+        if (room.gameSettings.inGame && room.gameSettings.time > 0) {
           return res.send({
             status: false,
             deadConnection: false,
