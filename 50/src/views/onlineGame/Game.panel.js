@@ -46,7 +46,7 @@ export const GamePanel = ({ id, setActiveView }) => {
 
   const gameExit = async () => {
     const res = await axios
-      .post("http://localhost:3000/api.php", {
+      .post("https://82.148.17.229:3000/api.php", {
         authData: {
           vkSign: window.location.search,
           vkId: vkData.id,
@@ -78,7 +78,7 @@ export const GamePanel = ({ id, setActiveView }) => {
 
   const startGame = async () => {
     const res = await axios
-      .post("http://localhost:3000/api.php", {
+      .post("https://82.148.17.229:3000/api.php", {
         authData: {
           vkSign: window.location.search,
           vkId: vkData.id,
@@ -106,7 +106,7 @@ export const GamePanel = ({ id, setActiveView }) => {
 
   const endGame = async () => {
     const res = await axios
-      .post("http://localhost:3000/api.php", {
+      .post("https://82.148.17.229:3000/api.php", {
         authData: {
           vkSign: window.location.search,
           vkId: vkData.id,
@@ -136,7 +136,7 @@ export const GamePanel = ({ id, setActiveView }) => {
   useEffect(() => {
     const i = setInterval(async () => {
       const res = await axios
-        .post("http://localhost:3000/api.php", {
+        .post("https://82.148.17.229:3000/api.php", {
           authData: {
             vkSign: window.location.search,
             vkId: vkData.id,

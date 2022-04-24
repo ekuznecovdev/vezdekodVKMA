@@ -47,7 +47,7 @@ export const HomePanel = ({ id, setActiveView }) => {
   };
   const createOnlineGame = async () => {
     const res = await axios
-      .post("http://localhost:3000/api.php", {
+      .post("https://82.148.17.229:3000/api.php", {
         authData: {
           vkSign: window.location.search,
           vkId: vkData.id,
@@ -94,7 +94,7 @@ export const HomePanel = ({ id, setActiveView }) => {
         const roomId = window.location.hash.split("#")[1];
         if (roomId && roomId.length > 0) {
           const res = await axios
-            .post("http://localhost:3000/api.php", {
+            .post("http://82.148.17.229:3000/api.php", {
               authData: {
                 vkSign: window.location.search,
                 vkId: vkData.id,
